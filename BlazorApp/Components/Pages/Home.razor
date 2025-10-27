@@ -1,0 +1,65 @@
+﻿@page "/"
+@inject IJSRuntime JSRuntime
+
+@rendermode InteractiveServer
+
+<div id="htmx-container" hx-preserve>
+    <SfGrid DataSource="@Orders" AllowSorting="true">
+        <GridColumns>
+            <GridColumn Field=@nameof(Order.OrderID) HeaderText="Order ID" TextAlign="TextAlign.Right" Width="60"></GridColumn>
+            <GridColumn Field=@nameof(Order.CustomerID) HeaderText="Customer Name" Width="60"></GridColumn>
+            <GridColumn Field=@nameof(Order.OrderDate) HeaderText="Order Date" Format="d" Type="ColumnType.Date" TextAlign="TextAlign.Right" Width="60"></GridColumn>
+            <GridColumn Field=@nameof(Order.Freight) HeaderText="Freight" Format="C2" TextAlign="TextAlign.Right" Width="60"></GridColumn>
+            <GridColumn HeaderText="Actions" Width="120">
+                <Template>
+                    @{
+                        var order = (context as Order);
+                        <button class="e-custom e-btn" type="button" hx-get="/htmx/message" hx-target="#htmxResult-@order.OrderID" hx-swap="innerHTML"
+                                hx-on="htmx:beforeRequest: console.log('HTMX request starting')"
+                                @onclick:stopPropagation="true"
+                                @onclick:preventDefault="true">
+                            Update
+                        </button>
+                        <div class="e-custom" id="htmxResult-@order.OrderID"></div>
+                    }
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+</div>
+
+@code {
+    public List<Order> Orders { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Orders = Enumerable.Range(1, 10).Select(x => new Order
+        {
+            OrderID = 1000 + x,
+            CustomerID = (new string[] { "ALFKI", "ANANTR", "ANTON", "BLONP", "BOLID" })[new Random().Next(5)],
+            Freight = 2.1 * x,
+            OrderDate = DateTime.Now.AddDays(-x)
+        }).ToList();
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("htmx.process", "#htmx-container");
+        }
+    }
+
+    public class Order
+    {
+        public int? OrderID { get; set; }
+        public string CustomerID { get; set; }
+        public DateTime? OrderDate { get; set; }
+        public double? Freight { get; set; }
+    }
+}
+
+<style>
+    .e-custom {
+        display: inline-block;
+    }
+</style>
