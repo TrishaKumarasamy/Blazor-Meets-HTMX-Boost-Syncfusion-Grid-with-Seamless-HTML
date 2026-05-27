@@ -1,5 +1,5 @@
-  <h1>Blazor HTMX Integration</h1>
-  <p>A Blazor Server application that integrates HTMX with [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid) for seamless dynamic content updates.</p>
+  # Blazor HTMX Integration
+  A Blazor Server application that integrates HTMX with [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid) for seamless dynamic content updates.
 
 ## Overview
 
