@@ -1,5 +1,5 @@
   <h1>Blazor HTMX Integration</h1>
-  <p>A Blazor Server application that integrates HTMX with Blazor Grid for seamless dynamic content updates</p>
+  <p>A Blazor Server application that integrates HTMX with [Blazor DataGrid](https://www.syncfusion.com/blazor-components/blazor-datagrid) for seamless dynamic content updates.</p>
 
 ## Overview
 
@@ -7,11 +7,11 @@ This project demonstrates how to combine Blazor's powerful component model with 
 
 ## Features
 
-- **Blazor Server Mode** - Interactive server-side rendering with .NET 9
-- **Grid** - Feature-rich data grid with sorting and custom column templates
-- **HTMX Integration** - Smooth partial page updates using HTMX AJAX requests
-- **Order Management Demo** - Sample order data with customer names, dates, and freight costs
-- **Real-time Content Updates** - Dynamic HTML content loaded via `/htmx/message` endpoint
+- **Blazor Server Mode** - Interactive server-side rendering.
+- **Grid** - Feature-rich data grid with sorting and custom column templates.
+- **HTMX Integration** - Smooth partial page updates using HTMX AJAX requests.
+- **Order Management Demo** - Sample order data with customer names, dates, and freight costs.
+- **Real-time Content Updates** - Dynamic HTML content loaded via `/htmx/message` endpoint.
 
 ## Prerequisites
 
@@ -46,5 +46,6 @@ dotnet run
 ```
 ## References
 
+- [Blazor Documentation](https://blazor.syncfusion.com/documentation/introduction)
 - [Blazor DataGrid Documentation](https://blazor.syncfusion.com/documentation/datagrid/getting-started-with-web-app)
-- [Blazor Documentation](https://learn.microsoft.com/en-us/aspnet/core/blazor)
+
